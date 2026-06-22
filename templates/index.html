@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoanVision AI | Instant Loan Approval</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-brain"></i> LoanVision AI
+        </div>
+        <a href="#form" class="nav-btn">Get Started</a>
+    </nav>
+
+    <!-- Slide 1: Hero Landing Page -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Get Your Loan Approved in Seconds</h1>
+            <p>AI-Powered Loan Prediction System with 78.86% Accuracy</p>
+            
+            <div class="hero-stats">
+                <div class="stat-box">
+                    <h3>78.86%</h3>
+                    <p>Accuracy</p>
+                </div>
+                <div class="stat-box">
+                    <h3>11+</h3>
+                    <p>Features</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Instant</h3>
+                    <p>Results</p>
+                </div>
+            </div>
+
+            <a href="#form" class="cta-btn">
+                Check Eligibility Now <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Slide 2: Form Section -->
+    <section class="form-section" id="form">
+        <div class="section-title">
+            <h2>Loan Eligibility Predictor</h2>
+            <p>Fill your details below to get instant prediction</p>
+        </div>
+
+        <div class="form-container">
+            <form method="POST" action="/">
+                <div class="input-grid">
+                    <div class="input-box">
+                        <label><i class="fas fa-venus-mars"></i> Gender</label>
+                        <select name="Gender" required>
+                            <option value="">Select</option>
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label><i class="fas fa-heart"></i> Married</label>
+                        <select name="Married" required>
+                            <option value="">Select</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label><i class="fas fa-users"></i> Dependents</label>
+                        <select name="Dependents" required>
+                            <option value="">Select</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3+</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label><i class="fas fa-graduation-cap"></i> Education</label>
+                        <select name="Education" required>
+                            <option value="">Select</option>
+                            <option value="0">Graduate</option>
+                            <option value="1">Not Graduate</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label><i class="fas fa-briefcase"></i> Self Employed</label>
+                        <select name="Self_Employed" required>
+                            <option value="">Select</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label><i class="fas fa-rupee-sign"></i> Applicant Income</label>
+                        <input type="number" name="ApplicantIncome" placeholder="e.g. 5000" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label><i class="fas fa-wallet"></i> Coapplicant Income</label>
+                        <input type="number" name="CoapplicantIncome" placeholder="e.g. 0" value="0" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label><i class="fas fa-money-bill"></i> Loan Amount</label>
+                        <input type="number" name="LoanAmount" placeholder="e.g. 150" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label><i class="fas fa-calendar"></i> Loan Term (Months)</label>
+                        <input type="number" name="Loan_Amount_Term" placeholder="e.g. 360" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label><i class="fas fa-chart-line"></i> Credit History</label>
+                        <select name="Credit_History" required>
+                            <option value="">Select</option>
+                            <option value="1.0">Good (1)</option>
+                            <option value="0.0">Bad (0)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label><i class="fas fa-map-marker-alt"></i> Property Area</label>
+                        <select name="Property_Area" required>
+                            <option value="">Select</option>
+                            <option value="0">Rural</option>
+                            <option value="2">Semiurban</option>
+                            <option value="1">Urban</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-magic"></i> Predict My Loan Status
+                </button>
+            </form>
+
+            {% if prediction_text %}
+            <div class="result-box {% if 'Congratulations' in prediction_text %}result-approved{% else %}result-rejected{% endif %}">
+                {% if 'Congratulations' in prediction_text %}
+                    <i class="fas fa-check-circle"></i>
+                {% else %}
+                    <i class="fas fa-times-circle"></i>
+                {% endif %}
+                <h2>{{ prediction_text }}</h2>
+            </div>
+            {% endif %}
+
+        </div>
+    </section>
+</body>
+</html>
