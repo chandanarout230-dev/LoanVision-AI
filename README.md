@@ -6,6 +6,7 @@ This is a Machine Learning based web application that predicts whether a loan ap
 
 ## 🚀 Live Demo
 https://loanvision-ai.onrender.com
+
 ---
 
 ## 📌 Project Description
